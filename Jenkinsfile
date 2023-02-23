@@ -49,11 +49,25 @@ pipeline {
                 }
             }
         }
-        stage("Test") {
+        stage('Test') {
             steps {
-                sh "mvn test"
+                sh 'mvn test'
                 jacoco()
-                junit "target/surefire-reports/*.xml"
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+        stage('Deploy to K8s') {
+            steps {
+                script {
+                    if (fileExists('configuracion')) {
+                        sh 'rm -r configuracion'
+                    }
+                }
+
+                /* groovylint-disable-next-line LineLength */
+                sh 'git clone https://github.com/scailancrei/kubernetes-helm-docker-config.git configuracion --branch master'
+                /* groovylint-disable-next-line LineLength */
+                sh 'kubectl apply -f configuracion/kubernetes-deployment/spring-boot-app/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
             }
         }
     }
