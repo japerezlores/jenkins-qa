@@ -64,10 +64,10 @@
           "raw": "{\r\n    \"title\": \"api-test\",\r\n    \"description\": \"api-test\",\r\n    \"published\": true\r\n}"
         },
         "url": {
-          "raw": "https://d696-79-147-44-168.eu.ngrok.io/api/tutorials",
+          "raw": "https://5a3f-79-147-44-168.eu.ngrok.io/api/tutorials",
           "protocol": "https",
           "host": [
-            "d696-79-147-44-168",
+            "5a3f-79-147-44-168",
             "eu",
             "ngrok",
             "io"
